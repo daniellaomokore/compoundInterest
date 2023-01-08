@@ -1,37 +1,44 @@
+# This program shows the user their saving account compound interest after x amount of years.
 
-#This program shows the user their saving account interest after yesr 1, 2 and 3
+# "{:.2f}".format() <<<< used to format value to 2d.p
 
-#"{:.2f}".format() <<<< used to format value to 2d.p
+class compound_interest:
 
-class compoundInterest:
-
- interestRate=0.04
-
-
-
- deposit = float(input("Enter your saving account deposit amount £:"))
- print("You have deposited £" + "{:.2f}".format(deposit))
+    def __init__(self, principle, interest_rate,time):
+        self.interest_rate = interest_rate
+        self.principle = principle
+        self.time = time
 
 
+    def balance_after_compound_interest(self):
+        self.principle = 0
+        self.interest_rate = 0
+        self.time = 0
 
- year1Interest= deposit * interestRate
- year1balance=deposit +year1Interest
- limit_float =round (year1balance,2)
- print("Your balance after 1 year will be £:" + "{:.2f}".format(year1balance))
+        while True:
+            principle = float(input("Enter the principle amount: "))
+            if principle < 0:
+                print("Principle can't be less than zero")
+            else:
+                break
+
+        while True:
+            rate = float(input("Enter the interest rate: "))
+            if rate < 0:
+                print("Interest rate can't be less than zero")
+            else:
+                break
+
+        while True:
+            time = int(input("Enter the time in years: "))
+            if time < 0:
+                print("Time can't be less than zero")
+            else:
+                break
+
+        total = principle * pow((1 + rate / 100), time)
+        return f"Balance after {time} year/s: £{total:.2f}"
 
 
-
- year2Interest = year1balance * interestRate
- year2balance = year1balance +year2Interest
- limit_float =round (year2balance,2)
- print("Your balance after 2 years is £:" + "{:.2f}".format(year2balance))
-
-
-
- year3Interest = year2balance * interestRate
- year3balance = year2balance +year3Interest
- limit_float =round (year3balance,2)
- print("Your balance after 3 years will be £" + "{:.2f}".format(year3balance))
-
-
- 
+User = compound_interest(1000,0.04,1)
+print(User.balance_after_compound_interest())
